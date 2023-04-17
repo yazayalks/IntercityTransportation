@@ -1,0 +1,324 @@
+﻿<Window x:Class="IntercityTransportation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntercityTransportation"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Главное меню" MinHeight="490" MinWidth="360" Height="451" Width="800">
+    <StackPanel Height="Auto">
+        <Menu  Name="Menu" Height="25" VerticalAlignment="Top" Padding="10 0 10 0">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Таблицы" Cursor="Hand">
+                <MenuItem  Name="BrandMenuItem" Header="Марки автобусов" Click="OpenBrandButton_Click" Cursor="Hand"></MenuItem>
+                <MenuItem  Name="DriverCategoryMenuItem" Header="Категории водителей" Click="OpenDriverCategoryButton_Click" Cursor="Hand"></MenuItem>
+                <MenuItem  Name="CityMenuItem" Header="Города"  Click="OpenCityButton_Click" Cursor="Hand"></MenuItem>
+                <MenuItem  Name="BusStopMenuItem" Header="Остановки"  Click="OpenBusStopButton_Click" Cursor="Hand"></MenuItem>
+                <MenuItem  Name="DriverMenuItem" Header="Водители" Click="OpenDriverButton_Click" Cursor="Hand"></MenuItem>
+                <MenuItem  Name="VehicleMenuItem" Header="Автобусы" Click="OpenVehicleButton_Click" Cursor="Hand"></MenuItem>
+                <MenuItem  Name="RouteMenuItem"  Header="Маршруты" Click="OpenRouteButton_Click" Cursor="Hand"></MenuItem>
+                <MenuItem  Name="VoyageMenuItem" Header="Рейсы" Click="OpenVoyageButton_Click" Cursor="Hand"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Справка"  Click="OpenHelpButton_Click" Cursor="Hand"></MenuItem>
+            <MenuItem Header="Настройки" Cursor="Hand">
+                <MenuItem Header="Смена пароля" Click="OpenRecoverPasswordButton_Click" Cursor="Hand" ></MenuItem>
+            </MenuItem>
+            <MenuItem  Name="AdminMenuItem" Header="Панель администратора" Click="OpenAdminButton_Click" Cursor="Hand"></MenuItem>
+            <MenuItem Header="Выход" Cursor="Hand" Click="ExitButton_Click" HorizontalAlignment="Right"></MenuItem>
+        </Menu>
+        <TextBox Name ="TitleTextBox" Text="" HorizontalAlignment="Center" BorderThickness="0" FontWeight="ExtraBold" Margin="10 10 10 0"></TextBox>
+        
+        <TabControl  Name="TabControl" MinHeight="400" BorderThickness="0">
+            
+            <TabItem x:Name ="BrandTabItem" Header="Марки автобусов" Visibility="Hidden" Height="0">
+                <Grid x:Name ="BrandGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid   x:Name="BrandGrid" IsReadOnly="True" AutoGenerateColumns="False" Height="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Название марки" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="AddBrandButton" Content="Добавить" Click="AddBrandButton_Click" Cursor="Hand" Width="100" Height="25" />
+                        <Button x:Name="EditBrandButton" Content="Редактировать" Click="EditBrandButton_Click" Cursor="Hand" Width="100" Height="25" Margin="10 0 10 0"/>
+                        <Button x:Name="DeleteBrandButton" Content="Удалить" Click="DeleteBrandButton_Click" Cursor="Hand" Width="100" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <TabItem x:Name ="DriverCategoryTabItem" Header="Категории водителей" Visibility="Hidden" Height="0">
+                <Grid x:Name ="DriverCategoryGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="DriverCategoryGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Category}" Header="Название категории" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="AddDriverCategoryButton" Content="Добавить" Click="AddDriverCategoryButton_Click" Cursor="Hand" Width="100" Height="25" />
+                        <Button x:Name="EditDriverCategoryButton" Content="Редактировать" Click="EditDriverCategoryButton_Click" Cursor="Hand" Width="100" Height="25" Margin="10 0 10 0"/>
+                        <Button x:Name="DeleteDriverCategoryButton" Content="Удалить" Click="DeleteDriverCategoryButton_Click" Cursor="Hand" Width="100" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name ="CityTabItem" Header="Города" Visibility="Hidden" Height="0">
+                <Grid x:Name ="CityGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="CityGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Название города" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="AddCityButton" Content="Добавить" Click="AddCityButton_Click" Cursor="Hand" Width="100" Height="25" />
+                        <Button x:Name="EditCityButton" Content="Редактировать" Click="EditCityButton_Click" Cursor="Hand" Width="100" Height="25" Margin="10 0 10 0"/>
+                        <Button x:Name="DeleteCityButton" Content="Удалить" Click="DeleteCityButton_Click" Cursor="Hand" Width="100" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name ="BusStopTabItem" Header="Города" Visibility="Hidden" Height="0">
+                <Grid x:Name ="BusStopGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="BusStopGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Название остановки" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="AddBusStopButton" Content="Добавить" Click="AddBusStopButton_Click" Cursor="Hand" Width="100" Height="25" />
+                        <Button x:Name="EditBusStopButton" Content="Редактировать" Click="EditBusStopButton_Click" Cursor="Hand" Width="100" Height="25" Margin="10 0 10 0"/>
+                        <Button x:Name="DeleteBusStopButton" Content="Удалить" Click="DeleteBusStopButton_Click" Cursor="Hand" Width="100" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name ="DriverTabItem" Header="Водители" Visibility="Hidden" Height="0">
+                <Grid x:Name ="DriverGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="DriverGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding FirstName}" Header="Имя" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding LastName}" Header="Фамилия" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding MiddleName}" Header="Отчество" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding BirthDate, StringFormat={}\{0:dd/MM/yyyy\}}" Header="Дата рождения" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding DriverCategory.Category}" Header="Категория" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding DriverClass}" Header="Класс" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding WorkExperience}" Header="Стаж" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="AddDriverButton" Content="Добавить" Click="AddDriverButton_Click" Cursor="Hand" Width="100" Height="25" />
+                        <Button x:Name="EditDriverButton" Content="Редактировать" Click="EditDriverButton_Click" Cursor="Hand" Width="100" Height="25" Margin="10 0 10 0"/>
+                        <Button x:Name="DeleteDriverButton" Content="Удалить" Click="DeleteDriverButton_Click" Cursor="Hand" Width="100" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name ="VehicleTabItem" Header="Автобусы" Visibility="Hidden" Height="0">
+                <Grid x:Name ="VehicleGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="VehicleGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Brand.Name}" Header="Марка" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Model}" Header="Модель" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding GovernmentNumber}" Header="Гос. номер" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding SeatCount}" Header="Количество мест" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding RepairYear}" Header="Год ремонта" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding ReleaseYear}" Header="Год выпуска" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Mileage}" Header="Пробег" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="AddVehicleButton" Content="Добавить" Click="AddVehicleButton_Click" Cursor="Hand" Width="100" Height="25" />
+                        <Button x:Name="EditVehicleButton" Content="Редактировать" Click="EditVehicleButton_Click" Cursor="Hand" Width="100" Height="25" Margin="10 0 10 0"/>
+                        <Button x:Name="DeleteVehicleButton" Content="Удалить" Click="DeleteVehicleButton_Click" Cursor="Hand" Width="100" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name ="RouteTabItem" Header="Автобусы" Visibility="Hidden" Height="0">
+                <Grid x:Name ="RouteGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="RouteGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Id}" Header="Шифр" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding StartingPoint.Name}" Header="Начальный пункт" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding EndingPoint.Name}" Header="Конечный пункт" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding DepartureTime, StringFormat={}\{0:hh:mm tt\}}" Header="Время отправления" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding TravelTime, StringFormat={}\{0:HH:mm:ss\}}" Header="Время в пути" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="AddRouteButton" Content="Добавить" Click="AddRouteButton_Click" Cursor="Hand" Width="100" Height="25" />
+                        <Button x:Name="EditRouteButton" Content="Редактировать" Click="EditRouteButton_Click" Cursor="Hand" Width="100" Height="25" Margin="10 0 10 0"/>
+                        <Button x:Name="DeleteRouteButton" Content="Удалить" Click="DeleteRouteButton_Click" Cursor="Hand" Width="100" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name ="VoyageTabItem" Header="Рейсы" Visibility="Hidden" Height="0">
+                <Grid x:Name ="VoyageGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="VoyageGrid" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Driver.LastName}" Header="Фамилия водителя" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Vehicle.Brand.Name}" Header="Марка автобуса" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding TotalRevenues}" Header="Общая выручка" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Route.Id}" Header="Шифр маршрута" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Route.StartingPoint.Name}" Header="Начальный пункт" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Route.EndingPoint.Name}" Header="Конечный пункт" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding VoyageDate, StringFormat={}\{0:dd/MM/yyyy\}}" Header="Дата рейса" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="AddVoyageButton" Content="Добавить" Click="AddVoyageButton_Click" Cursor="Hand" Width="100" Height="25" />
+                        <Button x:Name="EditVoyageButton" Content="Редактировать" Click="EditVoyageButton_Click" Cursor="Hand" Width="100" Height="25" Margin="10 0 10 0"/>
+                        <Button x:Name="DeleteVoyageButton" Content="Удалить" Click="DeleteVoyageButton_Click" Cursor="Hand" Width="100" Height="25"/>
+                        <Label Content="Поиск" VerticalAlignment="Center" Width="50" />
+                        <TextBox x:Name="SearchVoyageTextBox" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                 VerticalAlignment="Center" Width="120" />
+
+                        <Button Content="Искать" Click="SearchVoyageButton_Click" Width="100" Cursor="Hand" Height="25" Margin="10 0 10 0"/>
+                        <Button Content="Экспорт" Click="ExportVoyageButton_Click" Width="100" Cursor="Hand" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name ="AdminTabItem" Header="Панель администратора" Visibility="Hidden" Height="0">
+                <Grid x:Name ="AdminGridItem" Margin="10" Height="370">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.90*"></RowDefinition>
+                        <RowDefinition Height="0.10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="UserGrid"  CanUserAddRows="False" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Id}" Header="Индефиктор"  Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Email}" Header="Емаил"  Width="*"/>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Password}" Header="Хэш пароля"  Width="*"/>
+                            <DataGridComboBoxColumn x:Name="UserTypeColumn"  Header="Тип доступа"
+                                                 Width="*"
+                                                SelectedItemBinding="{Binding UserType}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button x:Name="SaveUserButton" Content="Сохранить" Click="SaveUserButton_Click" Width="100" Height="25" Cursor="Hand"/>
+                        <Button x:Name="EditAccessRightButton" Content="Редактировать" Click="EditAccessRightButton_Click" Width="100" Height="25" Margin="10 0 10 0" Cursor="Hand"/>
+                        <Button x:Name="DeleteUserButton" Content="Удалить" Click="DeleteUserButton_Click" Width="100" Height="25" Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem  x:Name ="HelpTabItem" Header="Справка" Visibility="Hidden" Height="0">
+                <Grid Margin="10">
+                    <Grid Height="400">
+                        <StackPanel>
+                            <Label Content="Как работает программа:" Width="Auto" HorizontalAlignment="Center" FontWeight="ExtraBold"/>
+                            <TextBlock TextWrapping="Wrap">
+                            Пользователь, при разрешённых правах доступа администратором, может читать, добавлять, редактировать, удалять необходимые данные;<LineBreak/>
+                                <LineBreak/>
+                            Пользователь имеет возможность поиска по таблице рейсов, а также может экспортироовать её в эксель и ворд файл;<LineBreak/>
+                                <LineBreak/>
+                            У всех пользователя есть возможность для изменения пароля;<LineBreak/>
+                                <LineBreak/>
+                            ...
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name ="RecoverPasswordTabItem" Header="Смена пароля" Visibility="Hidden" Height="0">
+                <Grid x:Name ="RecoverPasswordGridItem" Margin="10">
+
+                    <StackPanel Margin="0,5,0,0" Orientation="Vertical">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock>
+                          Для изменения текущего пароля введите старый пароль, новый пароль и повторите новый пароль.
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="Старый пароль"  VerticalAlignment="Center" Width="160"/>
+                                <PasswordBox x:Name="OldPasswordTexBox" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="140" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="Новый паролль"  VerticalAlignment="Center" Width="160"/>
+                                <PasswordBox x:Name="NewPasswordTexBox" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="140" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="Повтор нового пароля"  VerticalAlignment="Center" Width="160"/>
+                                <PasswordBox x:Name="ConfirmPasswordTexBox"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="140" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,25,0,0" Width="Auto" Height="50" VerticalAlignment="Top">
+                            <Button x:Name="RecoverPasswordButton" Content="Изменить" Click="RecoverPasswordButton_Click" Width="100" Height="25" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </StackPanel>
+</Window>

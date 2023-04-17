@@ -1,0 +1,41 @@
+﻿<Window x:Class="IntercityTransportation.Windows.Routes.SearchRouteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntercityTransportation.Windows.Routes"
+        mc:Ignorable="d"
+        Title="Поиск маршрута" Height="450" Width="800">
+    <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Поиск" VerticalAlignment="Center" Width="50" />
+            <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Height="20"
+                                 VerticalAlignment="Center" Width="300" />
+
+            <Button x:Name="SearchRouteButton" Content="Искать" Click="SearchRouteButton_Click" Width="100" Height="20" Margin="10 0 0 0" Cursor="Hand"/>
+        </StackPanel>
+
+        <StackPanel>
+            <Grid x:Name ="DriverGridItem"  Height="355"  Margin="0 10 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.90*"></RowDefinition>
+                    <RowDefinition Height="0.10*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+                <DataGrid x:Name="RouteGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Id}" Header="Шифр" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding StartingPoint.Name}" Header="Начальный пункт" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding EndingPoint.Name}" Header="Конечный пункт" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding DepartureTime, StringFormat={}\{0:hh:mm tt\}}" Header="Время отправления" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding TravelTime, StringFormat={}\{0:HH:mm:ss\}}" Header="Время в пути" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button x:Name="ChoiseRouteButton" Content="Выбрать" Click="ChoiseRouteButton_Click" Width="100" Height="20" Margin="0 10 0 0" Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </StackPanel>
+</Window>

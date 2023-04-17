@@ -1,0 +1,19 @@
+﻿<Window x:Class="IntercityTransportation.Windows.BusStops.EditBusStopWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntercityTransportation.Windows.BusStops"
+        mc:Ignorable="d"
+        Title="Редактирование остановки" Height="450" Width="800">
+    <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Название остановки:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="160" />
+                <TextBox TextWrapping="Wrap" VerticalAlignment="Center" Width="120"
+                         Text="{Binding Path=BusStop.Name}" />
+            </StackPanel>
+            <Button Content="Сохранить" Click="SaveBusStopButton_Click" Width="120" Margin="0 10 0 0" Cursor="Hand"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

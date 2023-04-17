@@ -1,0 +1,43 @@
+﻿<Window x:Class="IntercityTransportation.Windows.Vehicles.SearchVehicleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntercityTransportation.Windows.Vehicles"
+        mc:Ignorable="d"
+        Title="Поиск автобуса" Height="450" Width="800">
+    <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Поиск" VerticalAlignment="Center" Width="50" />
+            <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Height="20"
+                                 VerticalAlignment="Center" Width="300" />
+
+            <Button x:Name="SearchVehicleButton" Content="Искать" Click="SearchVehicleButton_Click" Width="100" Height="20" Margin="10 0 0 0" Cursor="Hand"/>
+        </StackPanel>
+
+        <StackPanel>
+            <Grid x:Name ="VehicleGridItem"  Height="355"  Margin="0 10 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.90*"></RowDefinition>
+                    <RowDefinition Height="0.10*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+                <DataGrid x:Name="VehicleGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Brand.Name}" Header="Марка" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Model}" Header="Модель" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding GovernmentNumber}" Header="Гос. номер" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding SeatCount}" Header="Количество мест" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding RepairYear}" Header="Год ремонта" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding ReleaseYear}" Header="Год выпуска" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Mileage}" Header="Пробег" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button x:Name="ChoiseVehicleButton" Content="Выбрать" Click="ChoiseVehicleButton_Click" Width="100" Height="20" Margin="0 10 0 0" Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </StackPanel>
+</Window>

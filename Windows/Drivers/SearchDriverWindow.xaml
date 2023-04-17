@@ -1,0 +1,43 @@
+﻿<Window x:Class="IntercityTransportation.Windows.Drivers.SearchDriverWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntercityTransportation.Windows.Drivers"
+        mc:Ignorable="d"
+        Title="Поиск водителя" Height="450" Width="800">
+    <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Поиск" VerticalAlignment="Center" Width="50" />
+            <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Height="20"
+                                 VerticalAlignment="Center" Width="300" />
+
+            <Button x:Name="SearchDriverButton" Content="Искать" Click="SearchDriverButton_Click" Width="100" Height="20" Margin="10 0 0 0" Cursor="Hand"/>
+        </StackPanel>
+
+        <StackPanel>
+            <Grid x:Name ="DriverGridItem"  Height="355"  Margin="0 10 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.90*"></RowDefinition>
+                    <RowDefinition Height="0.10*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+                <DataGrid x:Name="DriverGrid" IsReadOnly="True" AutoGenerateColumns="False"  >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding FirstName}" Header="Имя" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding LastName}" Header="Фамилия" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding MiddleName}" Header="Отчество" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding BirthDate, StringFormat={}\{0:dd/MM/yyyy\}}" Header="Дата рождения" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding DriverCategory.Category}" Header="Категория" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding DriverClass}" Header="Класс" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding WorkExperience}" Header="Стаж" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button x:Name="ChoiseDriverButton" Content="Выбрать" Click="ChoiseDriverButton_Click" Width="100" Height="20" Margin="0 10 0 0" Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </StackPanel>
+</Window>

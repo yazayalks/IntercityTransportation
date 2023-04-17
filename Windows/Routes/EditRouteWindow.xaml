@@ -1,0 +1,57 @@
+﻿<Window x:Class="IntercityTransportation.Windows.Routes.EditRouteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntercityTransportation.Windows.Routes" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Редактирование маршрута" Height="450" Width="800">
+    <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+        <StackPanel Width="Auto">
+
+            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                <Label Content="Начальный пункт" HorizontalAlignment="Left" VerticalAlignment="Center" Width="160" />
+                <TextBox x:Name="StartingPointTextBox" TextWrapping="Wrap" IsReadOnly="True"  VerticalAlignment="Center" Width="120" Height="20" Cursor="Arrow"
+                         Text="{Binding Path=Route.StartingPoint.Name}" />
+                <Button Content="Выбрать начальный пункт" Click="SearchStartingPointButton_Click" Width="160" Height="20" Margin="10 0 10 0" Cursor="Hand"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                <Label Content="Конечный пункт" HorizontalAlignment="Left" VerticalAlignment="Center" Width="160" />
+                <TextBox x:Name="EndingPointTextBox" TextWrapping="Wrap" IsReadOnly="True"  VerticalAlignment="Center" Width="120" Height="20" Cursor="Arrow"
+                         Text="{Binding Path=Route.EndingPoint.Name}" />
+                <Button Content="Выбрать конечный пункт" Click="SearchEndingPointButton_Click" Width="160" Height="20" Margin="10 0 10 0" Cursor="Hand"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                <Label Content="Время отправления" HorizontalAlignment="Left" VerticalAlignment="Center" Width="160" />
+                <xctk:TimePicker Name="DepartureTimePicker" Width="120" Text="{Binding Path=Route.DepartureTime}"/>
+                <Label Content="Часы : минуты: AM/PM" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160"  Margin="10 0 10 0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                <Label Content="Время в пути" HorizontalAlignment="Left" VerticalAlignment="Center" Width="160" />
+                <xctk:TimePicker Name="TravelTimePicker" Width="120" Format="Custom" FormatString="d:HH:mm"    Text="{Binding Path=Route.TravelTime}"/>
+                <Label Content="Дни : часы : минуты" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160"  Margin="10 0 10 0"/>
+            </StackPanel>
+
+            <Button Content="Сохранить" HorizontalAlignment="Center" Click="SaveRouteButton_Click" Width="120" Height="20" Margin="-10 10 10 0" Cursor="Hand"/>
+        </StackPanel>
+        <StackPanel Width="Auto" HorizontalAlignment="Center" Margin="20 0 0 0">
+            <Label>
+                Остановки
+            </Label>
+            <DataGrid x:Name="BusStopGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="200" Height="200">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Название остановки"
+                                        Width="*" />
+                
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10 10 10 10">
+                <Button Content="Добавить" Click="AddBusStopButton_Click" Width="75" Margin="0 0 10 0" Cursor="Hand"/>
+                <Button Content="Удалить" Click="DeleteBusStopButton_Click" Width="75" Cursor="Hand"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

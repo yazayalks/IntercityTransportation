@@ -1,0 +1,58 @@
+﻿<Window x:Class="IntercityTransportation.Windows.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntercityTransportation.Windows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Аутентификация" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Авторизация">
+                <Grid>
+                    <StackPanel Width="200">
+                        <StackPanel>
+                            <Image HorizontalAlignment="Center"  Width="200" Height="100" VerticalAlignment="Center" Source="/Windows/busTravel.png"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5">
+                            <Label>Емаил</Label>
+                            <TextBox x:Name="LoginEmailTextBox"></TextBox>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5">
+                            <Label>Пароль</Label>
+                            <PasswordBox x:Name="LoginPasswordTextBox"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5">
+                            <Button Width="100" Height="20" Content="Войти" Click="LoginButton_Click"></Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Регистрация">
+                <Grid>
+                    <StackPanel Width="200">
+                        <StackPanel>
+                            <Image HorizontalAlignment="Center"   Width="200" Height="100" VerticalAlignment="Center" Source="/Windows/busTravel.png"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5">
+                            <Label>Емаил</Label>
+                            <TextBox x:Name="RegisterEmailTextBox"></TextBox>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5">
+                            <Label>Пароль</Label>
+                            <PasswordBox x:Name="RegisterPasswordTextBox"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5">
+                            <Label>Подтвержение пароля</Label>
+                            <PasswordBox x:Name="RegisterPasswordConfirmTextBox"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5">
+                            <Button Width="120" Height="20" Content="Зарегистрироваться" Click="RegistrButton_Click"></Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
